@@ -1,0 +1,547 @@
+L
+(boto3) BANL13b155565:boto3 spatrayuni$ python3
+Python 3.6.0 (v3.6.0:41df79263a11, Dec 22 2016, 17:23:13) 
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import boto3
+>>> ec2=boto3.resource('ec2')
+>>> print(ec2)
+ec2.ServiceResource()
+>>> ec2.instances.all()
+ec2.instancesCollection(ec2.ServiceResource(), ec2.Instance)
+>>> instances = ec2.instances.all()
+>>> for instance in instances:
+...     print(instance)
+... 
+ec2.Instance(id='i-0b7c1f448fff94094')
+ec2.Instance(id='i-0a20629144e5d2748')
+ec2.Instance(id='i-05b07b22b2db4c948')
+ec2.Instance(id='i-0f9020343d4593489')
+ec2.Instance(id='i-0fb67fd2aae96327a')
+ec2.Instance(id='i-016d102f7cc250c63')
+ec2.Instance(id='i-06d2a3eb3608bece3')
+>>> for instance in instances:
+...     print(instance)
+... 
+ec2.Instance(id='i-0b7c1f448fff94094')
+ec2.Instance(id='i-0a20629144e5d2748')
+ec2.Instance(id='i-05b07b22b2db4c948')
+ec2.Instance(id='i-0f9020343d4593489')
+ec2.Instance(id='i-0fb67fd2aae96327a')
+ec2.Instance(id='i-016d102f7cc250c63')
+ec2.Instance(id='i-06d2a3eb3608bece3')
+>>> 
+>>> 
+>>> client=boto3.resource('ec2')
+>>> client
+ec2.ServiceResource()
+>>> client.describe_instances()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'ec2.ServiceResource' object has no attribute 'describe_instances'
+>>> client=boto3.client('ec2')
+>>> client
+<botocore.client.EC2 object at 0x106f6f630>
+>>> client.describe_instances()
+{'Reservations': [{'ReservationId': 'r-0a9cf8accf41b3734', 'OwnerId': '230604046671', 'Groups': [], 'Instances': [{'InstanceId': 'i-0b7c1f448fff94094', 'ImageId': 'ami-157df375', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-5-236.us-west-2.compute.internal', 'PublicDnsName': 'ec2-54-70-177-9.us-west-2.compute.amazonaws.com', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 27, 1, 17, 30, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2c', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'disabled'}, 'SubnetId': 'subnet-4ea75315', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.5.236', 'PublicIpAddress': '54.70.177.9', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0d1b93cc01f37d0bc', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 1, 17, 30, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': 'OQfGS1495847849087', 'Tags': [{'Key': 'Name', 'Value': 'Testing'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-114e311e', 'SubnetId': 'subnet-4ea75315', 'VpcId': 'vpc-a2f4c1c5', 'Description': 'Primary network interface', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '0a:64:95:12:fa:4e', 'PrivateIpAddress': '10.0.5.236', 'PrivateDnsName': 'ip-10-0-5-236.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}], 'Attachment': {'AttachmentId': 'eni-attach-51a13532', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 1, 17, 30, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'Association': {'PublicIp': '54.70.177.9', 'PublicDnsName': 'ec2-54-70-177-9.us-west-2.compute.amazonaws.com', 'IpOwnerId': 'amazon'}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.5.236', 'PrivateDnsName': 'ip-10-0-5-236.us-west-2.compute.internal', 'Primary': True, 'Association': {'PublicIp': '54.70.177.9', 'PublicDnsName': 'ec2-54-70-177-9.us-west-2.compute.amazonaws.com', 'IpOwnerId': 'amazon'}}], 'Ipv6Addresses': []}], 'EbsOptimized': False}]}, {'ReservationId': 'r-0509441d80c430561', 'OwnerId': '230604046671', 'RequesterId': '226008221399', 'Groups': [], 'Instances': [{'InstanceId': 'i-0a20629144e5d2748', 'ImageId': 'ami-c5ec64a5', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-4-148.us-west-2.compute.internal', 'PublicDnsName': 'ec2-35-163-71-151.us-west-2.compute.amazonaws.com', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 15, 16, 27, 40, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2a', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'enabled'}, 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.4.148', 'PublicIpAddress': '35.163.71.151', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0c15acfb9d9d5b02a', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 15, 16, 27, 41, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': 'aae861b8-f78f-43af-bc27-05f918b441e5_subnet-3dd6975a_1', 'Tags': [{'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/Bastion/09370e90-398b-11e7-9d46-503acbd4dc99'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'AutoScalingGroup'}, {'Key': 'Name', 'Value': 'bastion'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'Bastion'}, {'Key': 'intuit:role', 'Value': 'bastion'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'Bastion-AutoScalingGroup-1ASDXBLXQHVR3'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-e79cd2cc', 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '02:eb:70:dd:e6:92', 'PrivateIpAddress': '10.0.4.148', 'PrivateDnsName': 'ip-10-0-4-148.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'Attachment': {'AttachmentId': 'eni-attach-4ab511a3', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 15, 16, 27, 40, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'Association': {'PublicIp': '35.163.71.151', 'PublicDnsName': 'ec2-35-163-71-151.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.4.148', 'PrivateDnsName': 'ip-10-0-4-148.us-west-2.compute.internal', 'Primary': True, 'Association': {'PublicIp': '35.163.71.151', 'PublicDnsName': 'ec2-35-163-71-151.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}}], 'Ipv6Addresses': []}], 'IamInstanceProfile': {'Arn': 'arn:aws:iam::230604046671:instance-profile/Bastion-InstanceProfile-1HNVXMBK99L6G', 'Id': 'AIPAJMXSNY5NJ5P7CKP6U'}, 'EbsOptimized': False}]}, {'ReservationId': 'r-0a42b1048a13b520a', 'OwnerId': '230604046671', 'RequesterId': '226008221399', 'Groups': [], 'Instances': [{'InstanceId': 'i-05b07b22b2db4c948', 'ImageId': 'ami-6f46da0f', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-4-191.us-west-2.compute.internal', 'PublicDnsName': 'ec2-35-167-18-122.us-west-2.compute.amazonaws.com', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 20, 20, 17, 34, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2a', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'enabled'}, 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.4.191', 'PublicIpAddress': '35.167.18.122', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0b775836799e83a34', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 20, 20, 17, 35, tzinfo=tzutc()), 'DeleteOnTermination': True}}, {'DeviceName': '/dev/xvdz', 'Ebs': {'VolumeId': 'vol-083e0a188a61a5de1', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 20, 20, 17, 35, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': '304cc09c-fe9f-4699-b4cb-c41dc056ff91_subnet-3dd6975a_1', 'Tags': [{'Key': 'aws:cloudformation:stack-name', 'Value': 'Nested2-AutoScalingStack-QOARM73PAQPW'}, {'Key': 'Name', 'Value': 'ngwi-qa-1'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'Nested2-AutoScalingStack-QOARM73PAQPW-fdsautoscaling-1EOBWW1LMHM3R'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/Nested2-AutoScalingStack-QOARM73PAQPW/e88cbbb0-3d98-11e7-af88-50d5ca789e82'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'fdsautoscaling'}], 'SecurityGroups': [{'GroupName': 'ngwi-qa-1-ELBSG', 'GroupId': 'sg-c15f1cba'}, {'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'intuit-cidr-ingress-tcp-80-SecurityGroup-270E86TZR48X', 'GroupId': 'sg-de007fa5'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-94b687bf', 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '02:cc:d8:55:1a:16', 'PrivateIpAddress': '10.0.4.191', 'PrivateDnsName': 'ip-10-0-4-191.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'ngwi-qa-1-ELBSG', 'GroupId': 'sg-c15f1cba'}, {'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'intuit-cidr-ingress-tcp-80-SecurityGroup-270E86TZR48X', 'GroupId': 'sg-de007fa5'}], 'Attachment': {'AttachmentId': 'eni-attach-7d7fc494', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 20, 20, 17, 34, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'Association': {'PublicIp': '35.167.18.122', 'PublicDnsName': 'ec2-35-167-18-122.us-west-2.compute.amazonaws.com', 'IpOwnerId': 'amazon'}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.4.191', 'PrivateDnsName': 'ip-10-0-4-191.us-west-2.compute.internal', 'Primary': True, 'Association': {'PublicIp': '35.167.18.122', 'PublicDnsName': 'ec2-35-167-18-122.us-west-2.compute.amazonaws.com', 'IpOwnerId': 'amazon'}}], 'Ipv6Addresses': []}], 'IamInstanceProfile': {'Arn': 'arn:aws:iam::230604046671:instance-profile/Nested2-AutoScalingStack-QOARM73PAQPW-InstanceProfile-S4ZS3MWMTRTI', 'Id': 'AIPAJ4IKMHB2D6E3JLSKM'}, 'EbsOptimized': False}]}, {'ReservationId': 'r-08dd47df09497ea58', 'OwnerId': '230604046671', 'RequesterId': '226008221399', 'Groups': [], 'Instances': [{'InstanceId': 'i-0f9020343d4593489', 'ImageId': 'ami-6f46da0f', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-4-247.us-west-2.compute.internal', 'PublicDnsName': '', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 27, 14, 54, 26, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2a', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'enabled'}, 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.4.247', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-068543c61ad2ee2a5', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 14, 54, 27, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': '90803ef4-4a97-4e3d-8c12-9db908f0f2e2_subnet-3dd6975a_1', 'Tags': [{'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withAS/54293030-42ec-11e7-82ca-503ac9316835'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'EC2withAS-ASG-P1AFLK7GB8K7'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withAS'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'ASG'}, {'Key': 'Name', 'Value': 'Server'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-5165897b', 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '02:62:3b:94:c8:94', 'PrivateIpAddress': '10.0.4.247', 'PrivateDnsName': 'ip-10-0-4-247.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'Attachment': {'AttachmentId': 'eni-attach-afe28446', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 14, 54, 26, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.4.247', 'PrivateDnsName': 'ip-10-0-4-247.us-west-2.compute.internal', 'Primary': True}], 'Ipv6Addresses': []}], 'EbsOptimized': False}]}, {'ReservationId': 'r-01baca4da7e611af2', 'OwnerId': '230604046671', 'RequesterId': '226008221399', 'Groups': [], 'Instances': [{'InstanceId': 'i-0fb67fd2aae96327a', 'ImageId': 'ami-6f46da0f', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-5-98.us-west-2.compute.internal', 'PublicDnsName': 'ec2-35-165-163-170.us-west-2.compute.amazonaws.com', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 27, 14, 54, 26, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2b', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'enabled'}, 'SubnetId': 'subnet-73ee753a', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.5.98', 'PublicIpAddress': '35.165.163.170', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0aeaa80704191fafb', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 14, 54, 27, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': '90803ef4-4a97-4e3d-8c12-9db908f0f2e2_subnet-73ee753a_1', 'Tags': [{'Key': 'aws:autoscaling:groupName', 'Value': 'EC2withAS-ASG-P1AFLK7GB8K7'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withAS'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withAS/54293030-42ec-11e7-82ca-503ac9316835'}, {'Key': 'Name', 'Value': 'Node'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'ASG'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-b30d0e8e', 'SubnetId': 'subnet-73ee753a', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '06:04:56:27:54:3e', 'PrivateIpAddress': '10.0.5.98', 'PrivateDnsName': 'ip-10-0-5-98.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'Attachment': {'AttachmentId': 'eni-attach-e551c50f', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 14, 54, 26, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'Association': {'PublicIp': '35.165.163.170', 'PublicDnsName': 'ec2-35-165-163-170.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.5.98', 'PrivateDnsName': 'ip-10-0-5-98.us-west-2.compute.internal', 'Primary': True, 'Association': {'PublicIp': '35.165.163.170', 'PublicDnsName': 'ec2-35-165-163-170.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}}], 'Ipv6Addresses': []}], 'EbsOptimized': False}]}, {'ReservationId': 'r-00a0aee7aedec2cdc', 'OwnerId': '230604046671', 'RequesterId': '226008221399', 'Groups': [], 'Instances': [{'InstanceId': 'i-016d102f7cc250c63', 'ImageId': 'ami-6f46da0f', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-5-189.us-west-2.compute.internal', 'PublicDnsName': 'ec2-34-209-115-183.us-west-2.compute.amazonaws.com', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 27, 15, 51, 14, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2c', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'enabled'}, 'SubnetId': 'subnet-4ea75315', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.5.189', 'PublicIpAddress': '34.209.115.183', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0ed03ca569f871852', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 15, 51, 15, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': 'cbe5d952-7d2b-4431-b200-4e323a084304_subnet-4ea75315_1', 'Tags': [{'Key': 'Name', 'Value': 'WorkS'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'ASG'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withAS/54293030-42ec-11e7-82ca-503ac9316835'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withAS'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'EC2withAS-ASG-P1AFLK7GB8K7'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-34f58f3b', 'SubnetId': 'subnet-4ea75315', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '0a:82:ef:2b:3d:f8', 'PrivateIpAddress': '10.0.5.189', 'PrivateDnsName': 'ip-10-0-5-189.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'Attachment': {'AttachmentId': 'eni-attach-0f7eee6c', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 15, 51, 14, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'Association': {'PublicIp': '34.209.115.183', 'PublicDnsName': 'ec2-34-209-115-183.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.5.189', 'PrivateDnsName': 'ip-10-0-5-189.us-west-2.compute.internal', 'Primary': True, 'Association': {'PublicIp': '34.209.115.183', 'PublicDnsName': 'ec2-34-209-115-183.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}}], 'Ipv6Addresses': []}], 'EbsOptimized': False}]}, {'ReservationId': 'r-0e99083a7fdb5e264', 'OwnerId': '230604046671', 'RequesterId': '658754138699', 'Groups': [], 'Instances': [{'InstanceId': 'i-06d2a3eb3608bece3', 'ImageId': 'ami-6f46da0f', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-4-230.us-west-2.compute.internal', 'PublicDnsName': '', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 23, 18, 25, 5, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2a', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'disabled'}, 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.4.230', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0dc733cc975db8b34', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 23, 18, 25, 6, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': 'EC2with-EC2-UVGEERPFTKR9', 'Tags': [{'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withIAM'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withIAM/21973db0-3fe5-11e7-9648-50d5ca789e1e'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'EC2'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-78222e53', 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '02:45:40:d9:ff:ba', 'PrivateIpAddress': '10.0.4.230', 'PrivateDnsName': 'ip-10-0-4-230.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}], 'Attachment': {'AttachmentId': 'eni-attach-36179edf', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 23, 18, 25, 5, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.4.230', 'PrivateDnsName': 'ip-10-0-4-230.us-west-2.compute.internal', 'Primary': True}], 'Ipv6Addresses': []}], 'IamInstanceProfile': {'Arn': 'arn:aws:iam::230604046671:instance-profile/IAMRole1-InstanceProfile-17EINXRUU37YE', 'Id': 'AIPAJ62YRFGRVBJSVGVXG'}, 'EbsOptimized': False}]}], 'ResponseMetadata': {'RequestId': '25ce036a-f069-42da-bce8-d94825395911', 'HTTPStatusCode': 200, 'HTTPHeaders': {'content-type': 'text/xml;charset=UTF-8', 'transfer-encoding': 'chunked', 'vary': 'Accept-Encoding', 'date': 'Tue, 30 May 2017 17:39:27 GMT', 'server': 'AmazonEC2'}, 'RetryAttempts': 0}}
+>>> client.describe_instances(Reservations[*].InstanceId[])
+  File "<stdin>", line 1
+    client.describe_instances(Reservations[*].InstanceId[])
+                                           ^
+SyntaxError: invalid syntax
+>>> client.describe_instances(Reservations[*].InstanceId)
+  File "<stdin>", line 1
+    client.describe_instances(Reservations[*].InstanceId)
+                                           ^
+SyntaxError: invalid syntax
+>>> client.describe_instances(Reservations[*])
+  File "<stdin>", line 1
+    client.describe_instances(Reservations[*])
+                                           ^
+SyntaxError: invalid syntax
+>>> for R in Rs:
+... for R in responses['Reservations']:
+  File "<stdin>", line 2
+    for R in responses['Reservations']:
+      ^
+IndentationError: expected an indented block
+>>> for R in responses['Reservations']:
+KeyboardInterrupt
+>>> client.describe_instances()
+{'Reservations': [{'ReservationId': 'r-0a9cf8accf41b3734', 'OwnerId': '230604046671', 'Groups': [], 'Instances': [{'InstanceId': 'i-0b7c1f448fff94094', 'ImageId': 'ami-157df375', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-5-236.us-west-2.compute.internal', 'PublicDnsName': 'ec2-54-70-177-9.us-west-2.compute.amazonaws.com', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 27, 1, 17, 30, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2c', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'disabled'}, 'SubnetId': 'subnet-4ea75315', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.5.236', 'PublicIpAddress': '54.70.177.9', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0d1b93cc01f37d0bc', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 1, 17, 30, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': 'OQfGS1495847849087', 'Tags': [{'Key': 'Name', 'Value': 'Testing'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-114e311e', 'SubnetId': 'subnet-4ea75315', 'VpcId': 'vpc-a2f4c1c5', 'Description': 'Primary network interface', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '0a:64:95:12:fa:4e', 'PrivateIpAddress': '10.0.5.236', 'PrivateDnsName': 'ip-10-0-5-236.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}], 'Attachment': {'AttachmentId': 'eni-attach-51a13532', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 1, 17, 30, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'Association': {'PublicIp': '54.70.177.9', 'PublicDnsName': 'ec2-54-70-177-9.us-west-2.compute.amazonaws.com', 'IpOwnerId': 'amazon'}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.5.236', 'PrivateDnsName': 'ip-10-0-5-236.us-west-2.compute.internal', 'Primary': True, 'Association': {'PublicIp': '54.70.177.9', 'PublicDnsName': 'ec2-54-70-177-9.us-west-2.compute.amazonaws.com', 'IpOwnerId': 'amazon'}}], 'Ipv6Addresses': []}], 'EbsOptimized': False}]}, {'ReservationId': 'r-0509441d80c430561', 'OwnerId': '230604046671', 'RequesterId': '226008221399', 'Groups': [], 'Instances': [{'InstanceId': 'i-0a20629144e5d2748', 'ImageId': 'ami-c5ec64a5', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-4-148.us-west-2.compute.internal', 'PublicDnsName': 'ec2-35-163-71-151.us-west-2.compute.amazonaws.com', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 15, 16, 27, 40, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2a', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'enabled'}, 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.4.148', 'PublicIpAddress': '35.163.71.151', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0c15acfb9d9d5b02a', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 15, 16, 27, 41, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': 'aae861b8-f78f-43af-bc27-05f918b441e5_subnet-3dd6975a_1', 'Tags': [{'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/Bastion/09370e90-398b-11e7-9d46-503acbd4dc99'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'AutoScalingGroup'}, {'Key': 'Name', 'Value': 'bastion'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'Bastion'}, {'Key': 'intuit:role', 'Value': 'bastion'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'Bastion-AutoScalingGroup-1ASDXBLXQHVR3'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-e79cd2cc', 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '02:eb:70:dd:e6:92', 'PrivateIpAddress': '10.0.4.148', 'PrivateDnsName': 'ip-10-0-4-148.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'Attachment': {'AttachmentId': 'eni-attach-4ab511a3', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 15, 16, 27, 40, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'Association': {'PublicIp': '35.163.71.151', 'PublicDnsName': 'ec2-35-163-71-151.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.4.148', 'PrivateDnsName': 'ip-10-0-4-148.us-west-2.compute.internal', 'Primary': True, 'Association': {'PublicIp': '35.163.71.151', 'PublicDnsName': 'ec2-35-163-71-151.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}}], 'Ipv6Addresses': []}], 'IamInstanceProfile': {'Arn': 'arn:aws:iam::230604046671:instance-profile/Bastion-InstanceProfile-1HNVXMBK99L6G', 'Id': 'AIPAJMXSNY5NJ5P7CKP6U'}, 'EbsOptimized': False}]}, {'ReservationId': 'r-0a42b1048a13b520a', 'OwnerId': '230604046671', 'RequesterId': '226008221399', 'Groups': [], 'Instances': [{'InstanceId': 'i-05b07b22b2db4c948', 'ImageId': 'ami-6f46da0f', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-4-191.us-west-2.compute.internal', 'PublicDnsName': 'ec2-35-167-18-122.us-west-2.compute.amazonaws.com', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 20, 20, 17, 34, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2a', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'enabled'}, 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.4.191', 'PublicIpAddress': '35.167.18.122', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0b775836799e83a34', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 20, 20, 17, 35, tzinfo=tzutc()), 'DeleteOnTermination': True}}, {'DeviceName': '/dev/xvdz', 'Ebs': {'VolumeId': 'vol-083e0a188a61a5de1', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 20, 20, 17, 35, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': '304cc09c-fe9f-4699-b4cb-c41dc056ff91_subnet-3dd6975a_1', 'Tags': [{'Key': 'aws:cloudformation:stack-name', 'Value': 'Nested2-AutoScalingStack-QOARM73PAQPW'}, {'Key': 'Name', 'Value': 'ngwi-qa-1'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'Nested2-AutoScalingStack-QOARM73PAQPW-fdsautoscaling-1EOBWW1LMHM3R'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/Nested2-AutoScalingStack-QOARM73PAQPW/e88cbbb0-3d98-11e7-af88-50d5ca789e82'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'fdsautoscaling'}], 'SecurityGroups': [{'GroupName': 'ngwi-qa-1-ELBSG', 'GroupId': 'sg-c15f1cba'}, {'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'intuit-cidr-ingress-tcp-80-SecurityGroup-270E86TZR48X', 'GroupId': 'sg-de007fa5'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-94b687bf', 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '02:cc:d8:55:1a:16', 'PrivateIpAddress': '10.0.4.191', 'PrivateDnsName': 'ip-10-0-4-191.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'ngwi-qa-1-ELBSG', 'GroupId': 'sg-c15f1cba'}, {'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'intuit-cidr-ingress-tcp-80-SecurityGroup-270E86TZR48X', 'GroupId': 'sg-de007fa5'}], 'Attachment': {'AttachmentId': 'eni-attach-7d7fc494', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 20, 20, 17, 34, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'Association': {'PublicIp': '35.167.18.122', 'PublicDnsName': 'ec2-35-167-18-122.us-west-2.compute.amazonaws.com', 'IpOwnerId': 'amazon'}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.4.191', 'PrivateDnsName': 'ip-10-0-4-191.us-west-2.compute.internal', 'Primary': True, 'Association': {'PublicIp': '35.167.18.122', 'PublicDnsName': 'ec2-35-167-18-122.us-west-2.compute.amazonaws.com', 'IpOwnerId': 'amazon'}}], 'Ipv6Addresses': []}], 'IamInstanceProfile': {'Arn': 'arn:aws:iam::230604046671:instance-profile/Nested2-AutoScalingStack-QOARM73PAQPW-InstanceProfile-S4ZS3MWMTRTI', 'Id': 'AIPAJ4IKMHB2D6E3JLSKM'}, 'EbsOptimized': False}]}, {'ReservationId': 'r-08dd47df09497ea58', 'OwnerId': '230604046671', 'RequesterId': '226008221399', 'Groups': [], 'Instances': [{'InstanceId': 'i-0f9020343d4593489', 'ImageId': 'ami-6f46da0f', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-4-247.us-west-2.compute.internal', 'PublicDnsName': '', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 27, 14, 54, 26, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2a', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'enabled'}, 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.4.247', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-068543c61ad2ee2a5', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 14, 54, 27, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': '90803ef4-4a97-4e3d-8c12-9db908f0f2e2_subnet-3dd6975a_1', 'Tags': [{'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withAS/54293030-42ec-11e7-82ca-503ac9316835'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'EC2withAS-ASG-P1AFLK7GB8K7'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withAS'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'ASG'}, {'Key': 'Name', 'Value': 'Server'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-5165897b', 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '02:62:3b:94:c8:94', 'PrivateIpAddress': '10.0.4.247', 'PrivateDnsName': 'ip-10-0-4-247.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'Attachment': {'AttachmentId': 'eni-attach-afe28446', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 14, 54, 26, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.4.247', 'PrivateDnsName': 'ip-10-0-4-247.us-west-2.compute.internal', 'Primary': True}], 'Ipv6Addresses': []}], 'EbsOptimized': False}]}, {'ReservationId': 'r-01baca4da7e611af2', 'OwnerId': '230604046671', 'RequesterId': '226008221399', 'Groups': [], 'Instances': [{'InstanceId': 'i-0fb67fd2aae96327a', 'ImageId': 'ami-6f46da0f', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-5-98.us-west-2.compute.internal', 'PublicDnsName': 'ec2-35-165-163-170.us-west-2.compute.amazonaws.com', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 27, 14, 54, 26, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2b', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'enabled'}, 'SubnetId': 'subnet-73ee753a', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.5.98', 'PublicIpAddress': '35.165.163.170', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0aeaa80704191fafb', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 14, 54, 27, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': '90803ef4-4a97-4e3d-8c12-9db908f0f2e2_subnet-73ee753a_1', 'Tags': [{'Key': 'aws:autoscaling:groupName', 'Value': 'EC2withAS-ASG-P1AFLK7GB8K7'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withAS'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withAS/54293030-42ec-11e7-82ca-503ac9316835'}, {'Key': 'Name', 'Value': 'Node'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'ASG'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-b30d0e8e', 'SubnetId': 'subnet-73ee753a', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '06:04:56:27:54:3e', 'PrivateIpAddress': '10.0.5.98', 'PrivateDnsName': 'ip-10-0-5-98.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'Attachment': {'AttachmentId': 'eni-attach-e551c50f', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 14, 54, 26, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'Association': {'PublicIp': '35.165.163.170', 'PublicDnsName': 'ec2-35-165-163-170.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.5.98', 'PrivateDnsName': 'ip-10-0-5-98.us-west-2.compute.internal', 'Primary': True, 'Association': {'PublicIp': '35.165.163.170', 'PublicDnsName': 'ec2-35-165-163-170.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}}], 'Ipv6Addresses': []}], 'EbsOptimized': False}]}, {'ReservationId': 'r-00a0aee7aedec2cdc', 'OwnerId': '230604046671', 'RequesterId': '226008221399', 'Groups': [], 'Instances': [{'InstanceId': 'i-016d102f7cc250c63', 'ImageId': 'ami-6f46da0f', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-5-189.us-west-2.compute.internal', 'PublicDnsName': 'ec2-34-209-115-183.us-west-2.compute.amazonaws.com', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 27, 15, 51, 14, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2c', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'enabled'}, 'SubnetId': 'subnet-4ea75315', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.5.189', 'PublicIpAddress': '34.209.115.183', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0ed03ca569f871852', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 15, 51, 15, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': 'cbe5d952-7d2b-4431-b200-4e323a084304_subnet-4ea75315_1', 'Tags': [{'Key': 'Name', 'Value': 'WorkS'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'ASG'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withAS/54293030-42ec-11e7-82ca-503ac9316835'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withAS'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'EC2withAS-ASG-P1AFLK7GB8K7'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-34f58f3b', 'SubnetId': 'subnet-4ea75315', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '0a:82:ef:2b:3d:f8', 'PrivateIpAddress': '10.0.5.189', 'PrivateDnsName': 'ip-10-0-5-189.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'Attachment': {'AttachmentId': 'eni-attach-0f7eee6c', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 15, 51, 14, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'Association': {'PublicIp': '34.209.115.183', 'PublicDnsName': 'ec2-34-209-115-183.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.5.189', 'PrivateDnsName': 'ip-10-0-5-189.us-west-2.compute.internal', 'Primary': True, 'Association': {'PublicIp': '34.209.115.183', 'PublicDnsName': 'ec2-34-209-115-183.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}}], 'Ipv6Addresses': []}], 'EbsOptimized': False}]}, {'ReservationId': 'r-0e99083a7fdb5e264', 'OwnerId': '230604046671', 'RequesterId': '658754138699', 'Groups': [], 'Instances': [{'InstanceId': 'i-06d2a3eb3608bece3', 'ImageId': 'ami-6f46da0f', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-4-230.us-west-2.compute.internal', 'PublicDnsName': '', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 23, 18, 25, 5, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2a', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'disabled'}, 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.4.230', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0dc733cc975db8b34', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 23, 18, 25, 6, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': 'EC2with-EC2-UVGEERPFTKR9', 'Tags': [{'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withIAM'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withIAM/21973db0-3fe5-11e7-9648-50d5ca789e1e'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'EC2'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-78222e53', 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '02:45:40:d9:ff:ba', 'PrivateIpAddress': '10.0.4.230', 'PrivateDnsName': 'ip-10-0-4-230.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}], 'Attachment': {'AttachmentId': 'eni-attach-36179edf', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 23, 18, 25, 5, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.4.230', 'PrivateDnsName': 'ip-10-0-4-230.us-west-2.compute.internal', 'Primary': True}], 'Ipv6Addresses': []}], 'IamInstanceProfile': {'Arn': 'arn:aws:iam::230604046671:instance-profile/IAMRole1-InstanceProfile-17EINXRUU37YE', 'Id': 'AIPAJ62YRFGRVBJSVGVXG'}, 'EbsOptimized': False}]}], 'ResponseMetadata': {'RequestId': '032417fd-41a3-4f42-9add-9a807e5718d1', 'HTTPStatusCode': 200, 'HTTPHeaders': {'content-type': 'text/xml;charset=UTF-8', 'transfer-encoding': 'chunked', 'vary': 'Accept-Encoding', 'date': 'Tue, 30 May 2017 17:46:09 GMT', 'server': 'AmazonEC2'}, 'RetryAttempts': 0}}
+>>> response=client.describe_instances()
+>>> responses=client.describe_instances()
+>>> for response in responses['Reservations']:
+...     print(response)
+... 
+{'ReservationId': 'r-0a9cf8accf41b3734', 'OwnerId': '230604046671', 'Groups': [], 'Instances': [{'InstanceId': 'i-0b7c1f448fff94094', 'ImageId': 'ami-157df375', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-5-236.us-west-2.compute.internal', 'PublicDnsName': 'ec2-54-70-177-9.us-west-2.compute.amazonaws.com', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 27, 1, 17, 30, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2c', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'disabled'}, 'SubnetId': 'subnet-4ea75315', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.5.236', 'PublicIpAddress': '54.70.177.9', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0d1b93cc01f37d0bc', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 1, 17, 30, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': 'OQfGS1495847849087', 'Tags': [{'Key': 'Name', 'Value': 'Testing'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-114e311e', 'SubnetId': 'subnet-4ea75315', 'VpcId': 'vpc-a2f4c1c5', 'Description': 'Primary network interface', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '0a:64:95:12:fa:4e', 'PrivateIpAddress': '10.0.5.236', 'PrivateDnsName': 'ip-10-0-5-236.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}], 'Attachment': {'AttachmentId': 'eni-attach-51a13532', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 1, 17, 30, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'Association': {'PublicIp': '54.70.177.9', 'PublicDnsName': 'ec2-54-70-177-9.us-west-2.compute.amazonaws.com', 'IpOwnerId': 'amazon'}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.5.236', 'PrivateDnsName': 'ip-10-0-5-236.us-west-2.compute.internal', 'Primary': True, 'Association': {'PublicIp': '54.70.177.9', 'PublicDnsName': 'ec2-54-70-177-9.us-west-2.compute.amazonaws.com', 'IpOwnerId': 'amazon'}}], 'Ipv6Addresses': []}], 'EbsOptimized': False}]}
+{'ReservationId': 'r-0509441d80c430561', 'OwnerId': '230604046671', 'RequesterId': '226008221399', 'Groups': [], 'Instances': [{'InstanceId': 'i-0a20629144e5d2748', 'ImageId': 'ami-c5ec64a5', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-4-148.us-west-2.compute.internal', 'PublicDnsName': 'ec2-35-163-71-151.us-west-2.compute.amazonaws.com', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 15, 16, 27, 40, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2a', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'enabled'}, 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.4.148', 'PublicIpAddress': '35.163.71.151', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0c15acfb9d9d5b02a', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 15, 16, 27, 41, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': 'aae861b8-f78f-43af-bc27-05f918b441e5_subnet-3dd6975a_1', 'Tags': [{'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/Bastion/09370e90-398b-11e7-9d46-503acbd4dc99'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'AutoScalingGroup'}, {'Key': 'Name', 'Value': 'bastion'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'Bastion'}, {'Key': 'intuit:role', 'Value': 'bastion'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'Bastion-AutoScalingGroup-1ASDXBLXQHVR3'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-e79cd2cc', 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '02:eb:70:dd:e6:92', 'PrivateIpAddress': '10.0.4.148', 'PrivateDnsName': 'ip-10-0-4-148.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'Attachment': {'AttachmentId': 'eni-attach-4ab511a3', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 15, 16, 27, 40, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'Association': {'PublicIp': '35.163.71.151', 'PublicDnsName': 'ec2-35-163-71-151.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.4.148', 'PrivateDnsName': 'ip-10-0-4-148.us-west-2.compute.internal', 'Primary': True, 'Association': {'PublicIp': '35.163.71.151', 'PublicDnsName': 'ec2-35-163-71-151.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}}], 'Ipv6Addresses': []}], 'IamInstanceProfile': {'Arn': 'arn:aws:iam::230604046671:instance-profile/Bastion-InstanceProfile-1HNVXMBK99L6G', 'Id': 'AIPAJMXSNY5NJ5P7CKP6U'}, 'EbsOptimized': False}]}
+{'ReservationId': 'r-0a42b1048a13b520a', 'OwnerId': '230604046671', 'RequesterId': '226008221399', 'Groups': [], 'Instances': [{'InstanceId': 'i-05b07b22b2db4c948', 'ImageId': 'ami-6f46da0f', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-4-191.us-west-2.compute.internal', 'PublicDnsName': 'ec2-35-167-18-122.us-west-2.compute.amazonaws.com', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 20, 20, 17, 34, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2a', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'enabled'}, 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.4.191', 'PublicIpAddress': '35.167.18.122', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0b775836799e83a34', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 20, 20, 17, 35, tzinfo=tzutc()), 'DeleteOnTermination': True}}, {'DeviceName': '/dev/xvdz', 'Ebs': {'VolumeId': 'vol-083e0a188a61a5de1', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 20, 20, 17, 35, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': '304cc09c-fe9f-4699-b4cb-c41dc056ff91_subnet-3dd6975a_1', 'Tags': [{'Key': 'aws:cloudformation:stack-name', 'Value': 'Nested2-AutoScalingStack-QOARM73PAQPW'}, {'Key': 'Name', 'Value': 'ngwi-qa-1'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'Nested2-AutoScalingStack-QOARM73PAQPW-fdsautoscaling-1EOBWW1LMHM3R'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/Nested2-AutoScalingStack-QOARM73PAQPW/e88cbbb0-3d98-11e7-af88-50d5ca789e82'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'fdsautoscaling'}], 'SecurityGroups': [{'GroupName': 'ngwi-qa-1-ELBSG', 'GroupId': 'sg-c15f1cba'}, {'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'intuit-cidr-ingress-tcp-80-SecurityGroup-270E86TZR48X', 'GroupId': 'sg-de007fa5'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-94b687bf', 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '02:cc:d8:55:1a:16', 'PrivateIpAddress': '10.0.4.191', 'PrivateDnsName': 'ip-10-0-4-191.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'ngwi-qa-1-ELBSG', 'GroupId': 'sg-c15f1cba'}, {'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'intuit-cidr-ingress-tcp-80-SecurityGroup-270E86TZR48X', 'GroupId': 'sg-de007fa5'}], 'Attachment': {'AttachmentId': 'eni-attach-7d7fc494', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 20, 20, 17, 34, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'Association': {'PublicIp': '35.167.18.122', 'PublicDnsName': 'ec2-35-167-18-122.us-west-2.compute.amazonaws.com', 'IpOwnerId': 'amazon'}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.4.191', 'PrivateDnsName': 'ip-10-0-4-191.us-west-2.compute.internal', 'Primary': True, 'Association': {'PublicIp': '35.167.18.122', 'PublicDnsName': 'ec2-35-167-18-122.us-west-2.compute.amazonaws.com', 'IpOwnerId': 'amazon'}}], 'Ipv6Addresses': []}], 'IamInstanceProfile': {'Arn': 'arn:aws:iam::230604046671:instance-profile/Nested2-AutoScalingStack-QOARM73PAQPW-InstanceProfile-S4ZS3MWMTRTI', 'Id': 'AIPAJ4IKMHB2D6E3JLSKM'}, 'EbsOptimized': False}]}
+{'ReservationId': 'r-08dd47df09497ea58', 'OwnerId': '230604046671', 'RequesterId': '226008221399', 'Groups': [], 'Instances': [{'InstanceId': 'i-0f9020343d4593489', 'ImageId': 'ami-6f46da0f', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-4-247.us-west-2.compute.internal', 'PublicDnsName': '', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 27, 14, 54, 26, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2a', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'enabled'}, 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.4.247', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-068543c61ad2ee2a5', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 14, 54, 27, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': '90803ef4-4a97-4e3d-8c12-9db908f0f2e2_subnet-3dd6975a_1', 'Tags': [{'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withAS/54293030-42ec-11e7-82ca-503ac9316835'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'EC2withAS-ASG-P1AFLK7GB8K7'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withAS'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'ASG'}, {'Key': 'Name', 'Value': 'Server'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-5165897b', 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '02:62:3b:94:c8:94', 'PrivateIpAddress': '10.0.4.247', 'PrivateDnsName': 'ip-10-0-4-247.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'Attachment': {'AttachmentId': 'eni-attach-afe28446', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 14, 54, 26, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.4.247', 'PrivateDnsName': 'ip-10-0-4-247.us-west-2.compute.internal', 'Primary': True}], 'Ipv6Addresses': []}], 'EbsOptimized': False}]}
+{'ReservationId': 'r-01baca4da7e611af2', 'OwnerId': '230604046671', 'RequesterId': '226008221399', 'Groups': [], 'Instances': [{'InstanceId': 'i-0fb67fd2aae96327a', 'ImageId': 'ami-6f46da0f', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-5-98.us-west-2.compute.internal', 'PublicDnsName': 'ec2-35-165-163-170.us-west-2.compute.amazonaws.com', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 27, 14, 54, 26, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2b', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'enabled'}, 'SubnetId': 'subnet-73ee753a', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.5.98', 'PublicIpAddress': '35.165.163.170', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0aeaa80704191fafb', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 14, 54, 27, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': '90803ef4-4a97-4e3d-8c12-9db908f0f2e2_subnet-73ee753a_1', 'Tags': [{'Key': 'aws:autoscaling:groupName', 'Value': 'EC2withAS-ASG-P1AFLK7GB8K7'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withAS'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withAS/54293030-42ec-11e7-82ca-503ac9316835'}, {'Key': 'Name', 'Value': 'Node'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'ASG'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-b30d0e8e', 'SubnetId': 'subnet-73ee753a', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '06:04:56:27:54:3e', 'PrivateIpAddress': '10.0.5.98', 'PrivateDnsName': 'ip-10-0-5-98.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'Attachment': {'AttachmentId': 'eni-attach-e551c50f', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 14, 54, 26, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'Association': {'PublicIp': '35.165.163.170', 'PublicDnsName': 'ec2-35-165-163-170.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.5.98', 'PrivateDnsName': 'ip-10-0-5-98.us-west-2.compute.internal', 'Primary': True, 'Association': {'PublicIp': '35.165.163.170', 'PublicDnsName': 'ec2-35-165-163-170.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}}], 'Ipv6Addresses': []}], 'EbsOptimized': False}]}
+{'ReservationId': 'r-00a0aee7aedec2cdc', 'OwnerId': '230604046671', 'RequesterId': '226008221399', 'Groups': [], 'Instances': [{'InstanceId': 'i-016d102f7cc250c63', 'ImageId': 'ami-6f46da0f', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-5-189.us-west-2.compute.internal', 'PublicDnsName': 'ec2-34-209-115-183.us-west-2.compute.amazonaws.com', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 27, 15, 51, 14, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2c', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'enabled'}, 'SubnetId': 'subnet-4ea75315', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.5.189', 'PublicIpAddress': '34.209.115.183', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0ed03ca569f871852', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 15, 51, 15, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': 'cbe5d952-7d2b-4431-b200-4e323a084304_subnet-4ea75315_1', 'Tags': [{'Key': 'Name', 'Value': 'WorkS'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'ASG'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withAS/54293030-42ec-11e7-82ca-503ac9316835'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withAS'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'EC2withAS-ASG-P1AFLK7GB8K7'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-34f58f3b', 'SubnetId': 'subnet-4ea75315', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '0a:82:ef:2b:3d:f8', 'PrivateIpAddress': '10.0.5.189', 'PrivateDnsName': 'ip-10-0-5-189.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'Attachment': {'AttachmentId': 'eni-attach-0f7eee6c', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 15, 51, 14, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'Association': {'PublicIp': '34.209.115.183', 'PublicDnsName': 'ec2-34-209-115-183.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.5.189', 'PrivateDnsName': 'ip-10-0-5-189.us-west-2.compute.internal', 'Primary': True, 'Association': {'PublicIp': '34.209.115.183', 'PublicDnsName': 'ec2-34-209-115-183.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}}], 'Ipv6Addresses': []}], 'EbsOptimized': False}]}
+{'ReservationId': 'r-0e99083a7fdb5e264', 'OwnerId': '230604046671', 'RequesterId': '658754138699', 'Groups': [], 'Instances': [{'InstanceId': 'i-06d2a3eb3608bece3', 'ImageId': 'ami-6f46da0f', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-4-230.us-west-2.compute.internal', 'PublicDnsName': '', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 23, 18, 25, 5, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2a', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'disabled'}, 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.4.230', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0dc733cc975db8b34', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 23, 18, 25, 6, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': 'EC2with-EC2-UVGEERPFTKR9', 'Tags': [{'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withIAM'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withIAM/21973db0-3fe5-11e7-9648-50d5ca789e1e'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'EC2'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-78222e53', 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '02:45:40:d9:ff:ba', 'PrivateIpAddress': '10.0.4.230', 'PrivateDnsName': 'ip-10-0-4-230.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}], 'Attachment': {'AttachmentId': 'eni-attach-36179edf', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 23, 18, 25, 5, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.4.230', 'PrivateDnsName': 'ip-10-0-4-230.us-west-2.compute.internal', 'Primary': True}], 'Ipv6Addresses': []}], 'IamInstanceProfile': {'Arn': 'arn:aws:iam::230604046671:instance-profile/IAMRole1-InstanceProfile-17EINXRUU37YE', 'Id': 'AIPAJ62YRFGRVBJSVGVXG'}, 'EbsOptimized': False}]}
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...             print instance
+  File "<stdin>", line 3
+    print instance
+                 ^
+SyntaxError: Missing parentheses in call to 'print'
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...             print(instance)
+... 
+{'InstanceId': 'i-0b7c1f448fff94094', 'ImageId': 'ami-157df375', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-5-236.us-west-2.compute.internal', 'PublicDnsName': 'ec2-54-70-177-9.us-west-2.compute.amazonaws.com', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 27, 1, 17, 30, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2c', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'disabled'}, 'SubnetId': 'subnet-4ea75315', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.5.236', 'PublicIpAddress': '54.70.177.9', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0d1b93cc01f37d0bc', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 1, 17, 30, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': 'OQfGS1495847849087', 'Tags': [{'Key': 'Name', 'Value': 'Testing'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-114e311e', 'SubnetId': 'subnet-4ea75315', 'VpcId': 'vpc-a2f4c1c5', 'Description': 'Primary network interface', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '0a:64:95:12:fa:4e', 'PrivateIpAddress': '10.0.5.236', 'PrivateDnsName': 'ip-10-0-5-236.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}], 'Attachment': {'AttachmentId': 'eni-attach-51a13532', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 1, 17, 30, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'Association': {'PublicIp': '54.70.177.9', 'PublicDnsName': 'ec2-54-70-177-9.us-west-2.compute.amazonaws.com', 'IpOwnerId': 'amazon'}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.5.236', 'PrivateDnsName': 'ip-10-0-5-236.us-west-2.compute.internal', 'Primary': True, 'Association': {'PublicIp': '54.70.177.9', 'PublicDnsName': 'ec2-54-70-177-9.us-west-2.compute.amazonaws.com', 'IpOwnerId': 'amazon'}}], 'Ipv6Addresses': []}], 'EbsOptimized': False}
+{'InstanceId': 'i-0a20629144e5d2748', 'ImageId': 'ami-c5ec64a5', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-4-148.us-west-2.compute.internal', 'PublicDnsName': 'ec2-35-163-71-151.us-west-2.compute.amazonaws.com', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 15, 16, 27, 40, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2a', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'enabled'}, 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.4.148', 'PublicIpAddress': '35.163.71.151', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0c15acfb9d9d5b02a', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 15, 16, 27, 41, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': 'aae861b8-f78f-43af-bc27-05f918b441e5_subnet-3dd6975a_1', 'Tags': [{'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/Bastion/09370e90-398b-11e7-9d46-503acbd4dc99'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'AutoScalingGroup'}, {'Key': 'Name', 'Value': 'bastion'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'Bastion'}, {'Key': 'intuit:role', 'Value': 'bastion'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'Bastion-AutoScalingGroup-1ASDXBLXQHVR3'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-e79cd2cc', 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '02:eb:70:dd:e6:92', 'PrivateIpAddress': '10.0.4.148', 'PrivateDnsName': 'ip-10-0-4-148.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'Attachment': {'AttachmentId': 'eni-attach-4ab511a3', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 15, 16, 27, 40, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'Association': {'PublicIp': '35.163.71.151', 'PublicDnsName': 'ec2-35-163-71-151.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.4.148', 'PrivateDnsName': 'ip-10-0-4-148.us-west-2.compute.internal', 'Primary': True, 'Association': {'PublicIp': '35.163.71.151', 'PublicDnsName': 'ec2-35-163-71-151.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}}], 'Ipv6Addresses': []}], 'IamInstanceProfile': {'Arn': 'arn:aws:iam::230604046671:instance-profile/Bastion-InstanceProfile-1HNVXMBK99L6G', 'Id': 'AIPAJMXSNY5NJ5P7CKP6U'}, 'EbsOptimized': False}
+{'InstanceId': 'i-05b07b22b2db4c948', 'ImageId': 'ami-6f46da0f', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-4-191.us-west-2.compute.internal', 'PublicDnsName': 'ec2-35-167-18-122.us-west-2.compute.amazonaws.com', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 20, 20, 17, 34, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2a', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'enabled'}, 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.4.191', 'PublicIpAddress': '35.167.18.122', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0b775836799e83a34', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 20, 20, 17, 35, tzinfo=tzutc()), 'DeleteOnTermination': True}}, {'DeviceName': '/dev/xvdz', 'Ebs': {'VolumeId': 'vol-083e0a188a61a5de1', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 20, 20, 17, 35, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': '304cc09c-fe9f-4699-b4cb-c41dc056ff91_subnet-3dd6975a_1', 'Tags': [{'Key': 'aws:cloudformation:stack-name', 'Value': 'Nested2-AutoScalingStack-QOARM73PAQPW'}, {'Key': 'Name', 'Value': 'ngwi-qa-1'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'Nested2-AutoScalingStack-QOARM73PAQPW-fdsautoscaling-1EOBWW1LMHM3R'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/Nested2-AutoScalingStack-QOARM73PAQPW/e88cbbb0-3d98-11e7-af88-50d5ca789e82'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'fdsautoscaling'}], 'SecurityGroups': [{'GroupName': 'ngwi-qa-1-ELBSG', 'GroupId': 'sg-c15f1cba'}, {'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'intuit-cidr-ingress-tcp-80-SecurityGroup-270E86TZR48X', 'GroupId': 'sg-de007fa5'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-94b687bf', 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '02:cc:d8:55:1a:16', 'PrivateIpAddress': '10.0.4.191', 'PrivateDnsName': 'ip-10-0-4-191.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'ngwi-qa-1-ELBSG', 'GroupId': 'sg-c15f1cba'}, {'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'intuit-cidr-ingress-tcp-80-SecurityGroup-270E86TZR48X', 'GroupId': 'sg-de007fa5'}], 'Attachment': {'AttachmentId': 'eni-attach-7d7fc494', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 20, 20, 17, 34, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'Association': {'PublicIp': '35.167.18.122', 'PublicDnsName': 'ec2-35-167-18-122.us-west-2.compute.amazonaws.com', 'IpOwnerId': 'amazon'}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.4.191', 'PrivateDnsName': 'ip-10-0-4-191.us-west-2.compute.internal', 'Primary': True, 'Association': {'PublicIp': '35.167.18.122', 'PublicDnsName': 'ec2-35-167-18-122.us-west-2.compute.amazonaws.com', 'IpOwnerId': 'amazon'}}], 'Ipv6Addresses': []}], 'IamInstanceProfile': {'Arn': 'arn:aws:iam::230604046671:instance-profile/Nested2-AutoScalingStack-QOARM73PAQPW-InstanceProfile-S4ZS3MWMTRTI', 'Id': 'AIPAJ4IKMHB2D6E3JLSKM'}, 'EbsOptimized': False}
+{'InstanceId': 'i-0f9020343d4593489', 'ImageId': 'ami-6f46da0f', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-4-247.us-west-2.compute.internal', 'PublicDnsName': '', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 27, 14, 54, 26, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2a', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'enabled'}, 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.4.247', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-068543c61ad2ee2a5', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 14, 54, 27, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': '90803ef4-4a97-4e3d-8c12-9db908f0f2e2_subnet-3dd6975a_1', 'Tags': [{'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withAS/54293030-42ec-11e7-82ca-503ac9316835'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'EC2withAS-ASG-P1AFLK7GB8K7'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withAS'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'ASG'}, {'Key': 'Name', 'Value': 'Server'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-5165897b', 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '02:62:3b:94:c8:94', 'PrivateIpAddress': '10.0.4.247', 'PrivateDnsName': 'ip-10-0-4-247.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'Attachment': {'AttachmentId': 'eni-attach-afe28446', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 14, 54, 26, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.4.247', 'PrivateDnsName': 'ip-10-0-4-247.us-west-2.compute.internal', 'Primary': True}], 'Ipv6Addresses': []}], 'EbsOptimized': False}
+{'InstanceId': 'i-0fb67fd2aae96327a', 'ImageId': 'ami-6f46da0f', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-5-98.us-west-2.compute.internal', 'PublicDnsName': 'ec2-35-165-163-170.us-west-2.compute.amazonaws.com', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 27, 14, 54, 26, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2b', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'enabled'}, 'SubnetId': 'subnet-73ee753a', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.5.98', 'PublicIpAddress': '35.165.163.170', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0aeaa80704191fafb', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 14, 54, 27, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': '90803ef4-4a97-4e3d-8c12-9db908f0f2e2_subnet-73ee753a_1', 'Tags': [{'Key': 'aws:autoscaling:groupName', 'Value': 'EC2withAS-ASG-P1AFLK7GB8K7'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withAS'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withAS/54293030-42ec-11e7-82ca-503ac9316835'}, {'Key': 'Name', 'Value': 'Node'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'ASG'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-b30d0e8e', 'SubnetId': 'subnet-73ee753a', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '06:04:56:27:54:3e', 'PrivateIpAddress': '10.0.5.98', 'PrivateDnsName': 'ip-10-0-5-98.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'Attachment': {'AttachmentId': 'eni-attach-e551c50f', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 14, 54, 26, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'Association': {'PublicIp': '35.165.163.170', 'PublicDnsName': 'ec2-35-165-163-170.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.5.98', 'PrivateDnsName': 'ip-10-0-5-98.us-west-2.compute.internal', 'Primary': True, 'Association': {'PublicIp': '35.165.163.170', 'PublicDnsName': 'ec2-35-165-163-170.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}}], 'Ipv6Addresses': []}], 'EbsOptimized': False}
+{'InstanceId': 'i-016d102f7cc250c63', 'ImageId': 'ami-6f46da0f', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-5-189.us-west-2.compute.internal', 'PublicDnsName': 'ec2-34-209-115-183.us-west-2.compute.amazonaws.com', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 27, 15, 51, 14, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2c', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'enabled'}, 'SubnetId': 'subnet-4ea75315', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.5.189', 'PublicIpAddress': '34.209.115.183', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0ed03ca569f871852', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 15, 51, 15, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': 'cbe5d952-7d2b-4431-b200-4e323a084304_subnet-4ea75315_1', 'Tags': [{'Key': 'Name', 'Value': 'WorkS'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'ASG'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withAS/54293030-42ec-11e7-82ca-503ac9316835'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withAS'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'EC2withAS-ASG-P1AFLK7GB8K7'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-34f58f3b', 'SubnetId': 'subnet-4ea75315', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '0a:82:ef:2b:3d:f8', 'PrivateIpAddress': '10.0.5.189', 'PrivateDnsName': 'ip-10-0-5-189.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}, {'GroupName': 'Bastion-SecurityGroup-U075CQ4G2P2L', 'GroupId': 'sg-d0e794ab'}], 'Attachment': {'AttachmentId': 'eni-attach-0f7eee6c', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 27, 15, 51, 14, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'Association': {'PublicIp': '34.209.115.183', 'PublicDnsName': 'ec2-34-209-115-183.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.5.189', 'PrivateDnsName': 'ip-10-0-5-189.us-west-2.compute.internal', 'Primary': True, 'Association': {'PublicIp': '34.209.115.183', 'PublicDnsName': 'ec2-34-209-115-183.us-west-2.compute.amazonaws.com', 'IpOwnerId': '230604046671'}}], 'Ipv6Addresses': []}], 'EbsOptimized': False}
+{'InstanceId': 'i-06d2a3eb3608bece3', 'ImageId': 'ami-6f46da0f', 'State': {'Code': 16, 'Name': 'running'}, 'PrivateDnsName': 'ip-10-0-4-230.us-west-2.compute.internal', 'PublicDnsName': '', 'StateTransitionReason': '', 'KeyName': 'intuit_learning', 'AmiLaunchIndex': 0, 'ProductCodes': [], 'InstanceType': 't2.micro', 'LaunchTime': datetime.datetime(2017, 5, 23, 18, 25, 5, tzinfo=tzutc()), 'Placement': {'AvailabilityZone': 'us-west-2a', 'GroupName': '', 'Tenancy': 'default'}, 'Monitoring': {'State': 'disabled'}, 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'PrivateIpAddress': '10.0.4.230', 'Architecture': 'x86_64', 'RootDeviceType': 'ebs', 'RootDeviceName': '/dev/sda1', 'BlockDeviceMappings': [{'DeviceName': '/dev/sda1', 'Ebs': {'VolumeId': 'vol-0dc733cc975db8b34', 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 23, 18, 25, 6, tzinfo=tzutc()), 'DeleteOnTermination': True}}], 'VirtualizationType': 'hvm', 'ClientToken': 'EC2with-EC2-UVGEERPFTKR9', 'Tags': [{'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withIAM'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withIAM/21973db0-3fe5-11e7-9648-50d5ca789e1e'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'EC2'}], 'SecurityGroups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}], 'SourceDestCheck': True, 'Hypervisor': 'xen', 'NetworkInterfaces': [{'NetworkInterfaceId': 'eni-78222e53', 'SubnetId': 'subnet-3dd6975a', 'VpcId': 'vpc-a2f4c1c5', 'Description': '', 'OwnerId': '230604046671', 'Status': 'in-use', 'MacAddress': '02:45:40:d9:ff:ba', 'PrivateIpAddress': '10.0.4.230', 'PrivateDnsName': 'ip-10-0-4-230.us-west-2.compute.internal', 'SourceDestCheck': True, 'Groups': [{'GroupName': 'intuit-cidr-ingress-SecurityGroup-1B069HP3BS54L', 'GroupId': 'sg-c6f88bbd'}], 'Attachment': {'AttachmentId': 'eni-attach-36179edf', 'DeviceIndex': 0, 'Status': 'attached', 'AttachTime': datetime.datetime(2017, 5, 23, 18, 25, 5, tzinfo=tzutc()), 'DeleteOnTermination': True}, 'PrivateIpAddresses': [{'PrivateIpAddress': '10.0.4.230', 'PrivateDnsName': 'ip-10-0-4-230.us-west-2.compute.internal', 'Primary': True}], 'Ipv6Addresses': []}], 'IamInstanceProfile': {'Arn': 'arn:aws:iam::230604046671:instance-profile/IAMRole1-InstanceProfile-17EINXRUU37YE', 'Id': 'AIPAJ62YRFGRVBJSVGVXG'}, 'EbsOptimized': False}
+>>>             print(instance.instanceid)
+  File "<stdin>", line 1
+    print(instance.instanceid)
+    ^
+IndentationError: unexpected indent
+>>>             print(instance.InstanceId)
+  File "<stdin>", line 1
+    print(instance.InstanceId)
+    ^
+IndentationError: unexpected indent
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...             print(instance.InstanceId)
+... 
+Traceback (most recent call last):
+  File "<stdin>", line 3, in <module>
+AttributeError: 'dict' object has no attribute 'InstanceId'
+>>>             print(instance['InstanceId'])
+  File "<stdin>", line 1
+    print(instance['InstanceId'])
+    ^
+IndentationError: unexpected indent
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...             print(instance['InstanceId'])
+... 
+i-0b7c1f448fff94094
+i-0a20629144e5d2748
+i-05b07b22b2db4c948
+i-0f9020343d4593489
+i-0fb67fd2aae96327a
+i-016d102f7cc250c63
+i-06d2a3eb3608bece3
+>>>             print(instance['InstanceId'],instance['tags'])
+  File "<stdin>", line 1
+    print(instance['InstanceId'],instance['tags'])
+    ^
+IndentationError: unexpected indent
+>>>             print(instance['InstanceId'],instance['Tags'])
+  File "<stdin>", line 1
+    print(instance['InstanceId'],instance['Tags'])
+    ^
+IndentationError: unexpected indent
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...             print(instance['InstanceId'],instance['Tags'])
+... 
+i-0b7c1f448fff94094 [{'Key': 'Name', 'Value': 'Testing'}]
+i-0a20629144e5d2748 [{'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/Bastion/09370e90-398b-11e7-9d46-503acbd4dc99'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'AutoScalingGroup'}, {'Key': 'Name', 'Value': 'bastion'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'Bastion'}, {'Key': 'intuit:role', 'Value': 'bastion'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'Bastion-AutoScalingGroup-1ASDXBLXQHVR3'}]
+i-05b07b22b2db4c948 [{'Key': 'aws:cloudformation:stack-name', 'Value': 'Nested2-AutoScalingStack-QOARM73PAQPW'}, {'Key': 'Name', 'Value': 'ngwi-qa-1'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'Nested2-AutoScalingStack-QOARM73PAQPW-fdsautoscaling-1EOBWW1LMHM3R'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/Nested2-AutoScalingStack-QOARM73PAQPW/e88cbbb0-3d98-11e7-af88-50d5ca789e82'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'fdsautoscaling'}]
+i-0f9020343d4593489 [{'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withAS/54293030-42ec-11e7-82ca-503ac9316835'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'EC2withAS-ASG-P1AFLK7GB8K7'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withAS'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'ASG'}, {'Key': 'Name', 'Value': 'Server'}]
+i-0fb67fd2aae96327a [{'Key': 'aws:autoscaling:groupName', 'Value': 'EC2withAS-ASG-P1AFLK7GB8K7'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withAS'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withAS/54293030-42ec-11e7-82ca-503ac9316835'}, {'Key': 'Name', 'Value': 'Node'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'ASG'}]
+i-016d102f7cc250c63 [{'Key': 'Name', 'Value': 'WorkS'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'ASG'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withAS/54293030-42ec-11e7-82ca-503ac9316835'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withAS'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'EC2withAS-ASG-P1AFLK7GB8K7'}]
+i-06d2a3eb3608bece3 [{'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withIAM'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withIAM/21973db0-3fe5-11e7-9648-50d5ca789e1e'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'EC2'}]
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...             for tag in instance['Tags']:
+...                     if (tag['Key'] == 'Name'):
+...                             print(tag['Value'])
+... 
+Testing
+bastion
+ngwi-qa-1
+Server
+Node
+WorkS
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...             print(instance['Tags'])
+... 
+[{'Key': 'Name', 'Value': 'Testing'}]
+[{'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/Bastion/09370e90-398b-11e7-9d46-503acbd4dc99'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'AutoScalingGroup'}, {'Key': 'Name', 'Value': 'bastion'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'Bastion'}, {'Key': 'intuit:role', 'Value': 'bastion'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'Bastion-AutoScalingGroup-1ASDXBLXQHVR3'}]
+[{'Key': 'aws:cloudformation:stack-name', 'Value': 'Nested2-AutoScalingStack-QOARM73PAQPW'}, {'Key': 'Name', 'Value': 'ngwi-qa-1'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'Nested2-AutoScalingStack-QOARM73PAQPW-fdsautoscaling-1EOBWW1LMHM3R'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/Nested2-AutoScalingStack-QOARM73PAQPW/e88cbbb0-3d98-11e7-af88-50d5ca789e82'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'fdsautoscaling'}]
+[{'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withAS/54293030-42ec-11e7-82ca-503ac9316835'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'EC2withAS-ASG-P1AFLK7GB8K7'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withAS'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'ASG'}, {'Key': 'Name', 'Value': 'Server'}]
+[{'Key': 'aws:autoscaling:groupName', 'Value': 'EC2withAS-ASG-P1AFLK7GB8K7'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withAS'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withAS/54293030-42ec-11e7-82ca-503ac9316835'}, {'Key': 'Name', 'Value': 'Node'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'ASG'}]
+[{'Key': 'Name', 'Value': 'WorkS'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'ASG'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withAS/54293030-42ec-11e7-82ca-503ac9316835'}, {'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withAS'}, {'Key': 'aws:autoscaling:groupName', 'Value': 'EC2withAS-ASG-P1AFLK7GB8K7'}]
+[{'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withIAM'}, {'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withIAM/21973db0-3fe5-11e7-9648-50d5ca789e1e'}, {'Key': 'aws:cloudformation:logical-id', 'Value': 'EC2'}]
+>>>             print(instance['Tags'].Key)
+  File "<stdin>", line 1
+    print(instance['Tags'].Key)
+    ^
+IndentationError: unexpected indent
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...             print(instance['Tags'].Key)
+... 
+Traceback (most recent call last):
+  File "<stdin>", line 3, in <module>
+AttributeError: 'list' object has no attribute 'Key'
+>>>             print(instance['Tags'][0])
+  File "<stdin>", line 1
+    print(instance['Tags'][0])
+    ^
+IndentationError: unexpected indent
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...             print(instance['Tags'][0])
+... 
+{'Key': 'Name', 'Value': 'Testing'}
+{'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/Bastion/09370e90-398b-11e7-9d46-503acbd4dc99'}
+{'Key': 'aws:cloudformation:stack-name', 'Value': 'Nested2-AutoScalingStack-QOARM73PAQPW'}
+{'Key': 'aws:cloudformation:stack-id', 'Value': 'arn:aws:cloudformation:us-west-2:230604046671:stack/EC2withAS/54293030-42ec-11e7-82ca-503ac9316835'}
+{'Key': 'aws:autoscaling:groupName', 'Value': 'EC2withAS-ASG-P1AFLK7GB8K7'}
+{'Key': 'Name', 'Value': 'WorkS'}
+{'Key': 'aws:cloudformation:stack-name', 'Value': 'EC2withIAM'}
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...             print(instance['Tags'][0].['Key'])
+  File "<stdin>", line 3
+    print(instance['Tags'][0].['Key'])
+                              ^
+SyntaxError: invalid syntax
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...             print(instance['Tags'][0]['Key'])
+... 
+Name
+aws:cloudformation:stack-id
+aws:cloudformation:stack-name
+aws:cloudformation:stack-id
+aws:autoscaling:groupName
+Name
+aws:cloudformation:stack-name
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...             print(instance['Tags'][*]['Key'])
+  File "<stdin>", line 3
+    print(instance['Tags'][*]['Key'])
+                           ^
+SyntaxError: invalid syntax
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...             print(instance['Tags'][0]['Key'])
+... 
+Name
+aws:cloudformation:stack-id
+aws:cloudformation:stack-name
+aws:cloudformation:stack-id
+aws:autoscaling:groupName
+Name
+aws:cloudformation:stack-name
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...             if (instance['Tags'][0]['Key']) == 'Name':
+...                     print(instance['Tags'][0]['Value'])
+... 
+Testing
+WorkS
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...             if ((instance['Tags'][0]['Key']) == 'Name') && ((instance['Tags'][0]['Value']) == 'Testing'):
+  File "<stdin>", line 3
+    if ((instance['Tags'][0]['Key']) == 'Name') && ((instance['Tags'][0]['Value']) == 'Testing'):
+                                                 ^
+SyntaxError: invalid syntax
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...             if ((instance['Tags'][0]['Key']) == 'Name') and ((instance['Tags'][0]['Value']) == 'Testing'):
+...                     print(instance['InstanceId')
+  File "<stdin>", line 4
+    print(instance['InstanceId')
+                               ^
+SyntaxError: invalid syntax
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...             if ((instance['Tags'][0]['Key']) == 'Name') and ((instance['Tags'][0]['Value']) == 'Testing'):
+...                     print(instance['InstanceId'])
+... 
+i-0b7c1f448fff94094
+>>> 
+>>> 
+>>> 
+>>> 
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...                     print(instance['InstanceId'])
+... 
+i-0b7c1f448fff94094
+i-0a20629144e5d2748
+i-05b07b22b2db4c948
+i-0f9020343d4593489
+i-0fb67fd2aae96327a
+i-016d102f7cc250c63
+i-06d2a3eb3608bece3
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...                     print(instance['InstanceId'],instance['PrivateIpAddress'])
+... 
+i-0b7c1f448fff94094 10.0.5.236
+i-0a20629144e5d2748 10.0.4.148
+i-05b07b22b2db4c948 10.0.4.191
+i-0f9020343d4593489 10.0.4.247
+i-0fb67fd2aae96327a 10.0.5.98
+i-016d102f7cc250c63 10.0.5.189
+i-06d2a3eb3608bece3 10.0.4.230
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...                     print(instance['InstanceId'],instance['PrivateIpAddress'],instance['PublicIpAddress'])
+... 
+i-0b7c1f448fff94094 10.0.5.236 54.70.177.9
+i-0a20629144e5d2748 10.0.4.148 35.163.71.151
+i-05b07b22b2db4c948 10.0.4.191 35.167.18.122
+Traceback (most recent call last):
+  File "<stdin>", line 3, in <module>
+KeyError: 'PublicIpAddress'
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...                     print(instance['InstanceId'],instance['PrivateIpAddress'],instance['PublicIpAddress'])
+... 
+i-0b7c1f448fff94094 10.0.5.236 54.70.177.9
+i-0a20629144e5d2748 10.0.4.148 35.163.71.151
+i-05b07b22b2db4c948 10.0.4.191 35.167.18.122
+Traceback (most recent call last):
+  File "<stdin>", line 3, in <module>
+KeyError: 'PublicIpAddress'
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...             try:
+...                     print(instance['InstanceId'],instance['PrivateIpAddress'],instance['PublicIpAddress'])
+...             except Keyerror:
+...                     continue
+... 
+i-0b7c1f448fff94094 10.0.5.236 54.70.177.9
+i-0a20629144e5d2748 10.0.4.148 35.163.71.151
+i-05b07b22b2db4c948 10.0.4.191 35.167.18.122
+Traceback (most recent call last):
+  File "<stdin>", line 4, in <module>
+KeyError: 'PublicIpAddress'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<stdin>", line 5, in <module>
+NameError: name 'Keyerror' is not defined
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...             try:
+...                     print(instance['InstanceId'],instance['PrivateIpAddress'],instance['PublicIpAddress'])
+...             except Keyerror:
+...                     pass
+... 
+i-0b7c1f448fff94094 10.0.5.236 54.70.177.9
+i-0a20629144e5d2748 10.0.4.148 35.163.71.151
+i-05b07b22b2db4c948 10.0.4.191 35.167.18.122
+Traceback (most recent call last):
+  File "<stdin>", line 4, in <module>
+KeyError: 'PublicIpAddress'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<stdin>", line 5, in <module>
+NameError: name 'Keyerror' is not defined
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...                     print(instance['InstanceId'],instance['PrivateIpAddress'],instance.get('PublicIpAddress',''))
+... 
+i-0b7c1f448fff94094 10.0.5.236 54.70.177.9
+i-0a20629144e5d2748 10.0.4.148 35.163.71.151
+i-05b07b22b2db4c948 10.0.4.191 35.167.18.122
+i-0f9020343d4593489 10.0.4.247 
+i-0fb67fd2aae96327a 10.0.5.98 35.165.163.170
+i-016d102f7cc250c63 10.0.5.189 34.209.115.183
+i-06d2a3eb3608bece3 10.0.4.230 
+>>>                     print(instance['InstanceId'],"\t",instance['PrivateIpAddress'],"\t",instance.get('PublicIpAddress',''))
+  File "<stdin>", line 1
+    print(instance['InstanceId'],"\t",instance['PrivateIpAddress'],"\t",instance.get('PublicIpAddress',''))
+    ^
+IndentationError: unexpected indent
+>>> for response in responses['Reservations']:
+...     for instance in response['Instances']:
+...                     print(instance['InstanceId'],"\t",instance['PrivateIpAddress'],"\t",instance.get('PublicIpAddress',''))
+... 
+i-0b7c1f448fff94094 	 10.0.5.236 	 54.70.177.9
+i-0a20629144e5d2748 	 10.0.4.148 	 35.163.71.151
+i-05b07b22b2db4c948 	 10.0.4.191 	 35.167.18.122
+i-0f9020343d4593489 	 10.0.4.247 	 
+i-0fb67fd2aae96327a 	 10.0.5.98 	 35.165.163.170
+i-016d102f7cc250c63 	 10.0.5.189 	 34.209.115.183
+i-06d2a3eb3608bece3 	 10.0.4.230 	 
+>>> exit()
+(boto3) BANL13b155565:boto3 spatrayuni$ 
+(boto3) BANL13b155565:boto3 spatrayuni$ 
+(boto3) BANL13b155565:boto3 spatrayuni$ pip freeze
+altgraph==0.10.2
+asn1crypto==0.22.0
+backports-abc==0.5
+bdist-mpkg==0.5.0
+bonjour-py==0.3
+botocore==1.5.39
+certifi==2017.1.23
+cffi==1.10.0
+cryptography==1.8.1
+docutils==0.13.1
+enum34==1.1.6
+futures==3.1.1
+idna==2.5
+ipaddress==1.0.18
+jmespath==0.9.2
+macholib==1.5.1
+matplotlib==1.3.1
+modulegraph==0.10.4
+nose==1.3.7
+numpy==1.8.0rc1
+packaging==16.8
+powerline-status==2.5.dev9999+git.8286674bf7cd6ec1de4856f463d647f77080bc09
+psutil==5.0.1
+py2app==0.7.3
+pyasn1==0.1.9
+pycparser==2.17
+pyobjc-core==2.5.1
+pyobjc-framework-Accounts==2.5.1
+pyobjc-framework-AddressBook==2.5.1
+pyobjc-framework-AppleScriptKit==2.5.1
+pyobjc-framework-AppleScriptObjC==2.5.1
+pyobjc-framework-Automator==2.5.1
+pyobjc-framework-CFNetwork==2.5.1
+pyobjc-framework-Cocoa==2.5.1
+pyobjc-framework-Collaboration==2.5.1
+pyobjc-framework-CoreData==2.5.1
+pyobjc-framework-CoreLocation==2.5.1
+pyobjc-framework-CoreText==2.5.1
+pyobjc-framework-DictionaryServices==2.5.1
+pyobjc-framework-EventKit==2.5.1
+pyobjc-framework-ExceptionHandling==2.5.1
+pyobjc-framework-FSEvents==2.5.1
+pyobjc-framework-InputMethodKit==2.5.1
+pyobjc-framework-InstallerPlugins==2.5.1
+pyobjc-framework-InstantMessage==2.5.1
+pyobjc-framework-LatentSemanticMapping==2.5.1
+pyobjc-framework-LaunchServices==2.5.1
+pyobjc-framework-Message==2.5.1
+pyobjc-framework-OpenDirectory==2.5.1
+pyobjc-framework-PreferencePanes==2.5.1
+pyobjc-framework-PubSub==2.5.1
+pyobjc-framework-QTKit==2.5.1
+pyobjc-framework-Quartz==2.5.1
+pyobjc-framework-ScreenSaver==2.5.1
+pyobjc-framework-ScriptingBridge==2.5.1
+pyobjc-framework-SearchKit==2.5.1
+pyobjc-framework-ServiceManagement==2.5.1
+pyobjc-framework-Social==2.5.1
+pyobjc-framework-SyncServices==2.5.1
+pyobjc-framework-SystemConfiguration==2.5.1
+pyobjc-framework-WebKit==2.5.1
+pyOpenSSL==0.13.1
+pyparsing==2.0.1
+python-dateutil==2.6.0
+pytz==2013.7
+s3transfer==0.1.10
+scipy==0.13.0b1
+singledispatch==3.4.0.3
+six==1.10.0
+tornado==4.5
+virtualenv==15.1.0
+xattr==0.6.4
+zope.interface==4.1.1
+(boto3) BANL13b155565:boto3 spatrayuni$ pip list
+DEPRECATION: The default format will switch to columns in the future. You can use --format=(legacy|columns) (or define a format=(legacy|columns) in your pip.conf under the [list] section) to disable this warning.
+altgraph (0.10.2)
+asn1crypto (0.22.0)
+backports-abc (0.5)
+bdist-mpkg (0.5.0)
+bonjour-py (0.3)
+botocore (1.5.39)
+certifi (2017.1.23)
+cffi (1.10.0)
+cryptography (1.8.1)
+docutils (0.13.1)
+enum34 (1.1.6)
+futures (3.1.1)
+idna (2.5)
+ipaddress (1.0.18)
+jmespath (0.9.2)
+macholib (1.5.1)
+matplotlib (1.3.1)
+modulegraph (0.10.4)
+nose (1.3.7)
+numpy (1.8.0rc1)
+packaging (16.8)
+pip (9.0.1)
+powerline-status (2.5.dev9999+git.8286674bf7cd6ec1de4856f463d647f77080bc09)
+psutil (5.0.1)
+py2app (0.7.3)
+pyasn1 (0.1.9)
+pycparser (2.17)
+pyobjc-core (2.5.1)
+pyobjc-framework-Accounts (2.5.1)
+pyobjc-framework-AddressBook (2.5.1)
+pyobjc-framework-AppleScriptKit (2.5.1)
+pyobjc-framework-AppleScriptObjC (2.5.1)
+pyobjc-framework-Automator (2.5.1)
+pyobjc-framework-CFNetwork (2.5.1)
+pyobjc-framework-Cocoa (2.5.1)
+pyobjc-framework-Collaboration (2.5.1)
+pyobjc-framework-CoreData (2.5.1)
+pyobjc-framework-CoreLocation (2.5.1)
+pyobjc-framework-CoreText (2.5.1)
+pyobjc-framework-DictionaryServices (2.5.1)
+pyobjc-framework-EventKit (2.5.1)
+pyobjc-framework-ExceptionHandling (2.5.1)
+pyobjc-framework-FSEvents (2.5.1)
+pyobjc-framework-InputMethodKit (2.5.1)
+pyobjc-framework-InstallerPlugins (2.5.1)
+pyobjc-framework-InstantMessage (2.5.1)
+pyobjc-framework-LatentSemanticMapping (2.5.1)
+pyobjc-framework-LaunchServices (2.5.1)
+pyobjc-framework-Message (2.5.1)
+pyobjc-framework-OpenDirectory (2.5.1)
+pyobjc-framework-PreferencePanes (2.5.1)
+pyobjc-framework-PubSub (2.5.1)
+pyobjc-framework-QTKit (2.5.1)
+pyobjc-framework-Quartz (2.5.1)
+pyobjc-framework-ScreenSaver (2.5.1)
+pyobjc-framework-ScriptingBridge (2.5.1)
+pyobjc-framework-SearchKit (2.5.1)
+pyobjc-framework-ServiceManagement (2.5.1)
+pyobjc-framework-Social (2.5.1)
+pyobjc-framework-SyncServices (2.5.1)
+pyobjc-framework-SystemConfiguration (2.5.1)
+pyobjc-framework-WebKit (2.5.1)
+pyOpenSSL (0.13.1)
+pyparsing (2.0.1)
+python-dateutil (2.6.0)
+pytz (2013.7)
+s3transfer (0.1.10)
+scipy (0.13.0b1)
+setuptools (18.5)
+singledispatch (3.4.0.3)
+six (1.10.0)
+tornado (4.5)
+virtualenv (15.1.0)
+xattr (0.6.4)
+zope.interface (4.1.1)
+(boto3) BANL13b155565:boto3 spatrayuni$ 
+(boto3) BANL13b155565:boto3 spatrayuni$ 
+(boto3) BANL13b155565:boto3 spatrayuni$ exit
+logout
+Saving session...
+...copying shared history...
+...saving history...truncating history files...
+...completed.
+Deleting expired sessions...67 completed.
+
+[Process completed]
+

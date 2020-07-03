@@ -1,0 +1,1 @@
+{"errorMessage": "'Records'", "errorType": "KeyError", "stackTrace": [["/var/task/cicdtest.py", 12, "lambda_handler", "for record in event['Records']:"]]}
